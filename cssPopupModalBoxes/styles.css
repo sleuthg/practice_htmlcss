@@ -1,0 +1,179 @@
+
+/* This stylesheet works through the styling for a "modal" pop-up box using only CSS,
+ * but I don't think that it is truly a modal box, because the rest of the page is still
+ * accessible while the pop-up box is open.  If it were modal, than the rest of the page
+ * should not be accessible.  And it would be nice if the pop-up closed if the user
+ * clicked outside of the box.  This may not be possible with CSS-only, however.
+ *
+ * This example puts all of the modal stuff associated with the article tag, but this doesn't
+ * always have to be the case.  You might define a .modalDialog class.
+ */
+
+/* create a container with a full web-page height */
+html,body {
+  display: block;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* give the page a little style with different fonts and colors to make things stand out */
+html,body {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  background: rgb(21,34,47);
+}
+
+/* make a container that stands out from the background */
+#container {
+  display: block;
+  width: 1000px;
+  height: 100%;
+  background: #ccc;
+  margin: 0 auto 0 auto; /* top right bottom left... still don't quite understand this one, it will center the container horizontally */
+  padding: 1em;
+}
+
+/* add a nice box around the navigation links*/
+nav {
+  display: block;
+  padding: 1em;
+  border: 3px solid #000;
+  margin: 2em 0 2em 0;
+}
+
+/* make the navigation links look like buttons */
+nav a {
+  display: inline-block;
+  padding: 1em;
+  margin-left: 1em;
+  font-size: 1.5em;
+  border: 3px solid #fff;
+  background: #333;
+  color: #fff;
+}
+
+/* make it easy for the user to know which option is going to be selected */
+nav a:hover {
+  border-color: #333;
+  background: #fff;
+  color: #333;
+}
+
+.modal-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 9998;
+  opacity:0;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+  pointer-events: none;
+}
+
+.modal-container:target {
+  opacity:1;
+  pointer-events: auto;
+}
+
+/* default styles for modal boxes which are all contained in article tags */
+.modal-container article {
+  display: block;
+  position: fixed;
+  z-index: 9999;   /* higher numbers place elements on top */
+  left: 25%;
+  top: 100%;       /* with a fixed position, this puts the content off of the page */
+  width: 40%;
+  height: 50%;
+  padding: 2em 5% 0 5%;
+  border-radius: 1em;
+  background: #000;
+  color: #fff;
+  /*overflow: auto;   !* adds a scroll-bar if needed to view clipped content *!*/
+}
+
+/* all properties are eligible for transition animation */
+.modal-container article {
+  padding-bottom: 1em;
+  -webkit-transition: all 2s;
+  transition: all 2s;
+}
+
+/* define specific properties to define the state of articles when they are visible */
+.modal-container:target article {
+  visibility: visible !important;
+  left: 25% !important;
+  top: 25% !important;
+  width: 40% !important;
+  height: 50% !important;
+  opacity: 1 !important;
+}
+
+/* define the transitions */
+[data-transition="fade"] article {
+  left: 25%;
+  top: 25%;
+  opacity: 0;
+  visibility: hidden;
+}
+[data-transition="left"] article {
+  left: -100%;  /* puts the content off to the right */
+  top: 25%;
+}
+[data-transition="right"] article {
+  left: 100%;
+  top: 25%;
+}
+[data-transition="zoom"] article {
+  left: 50%;   /* start in the middle of the page */
+  top: 50%;    /* start in the middle of the page */
+  width: 0;    /* start with zero width to zoom in */
+  height: 0;   /* start with zero height to zoom in */
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* make the close link look like a close button */
+/* this example makes a fun little circle close button overlapped with the modal window */
+article [data-button="close"] {
+  display: block;
+  /*float: right;*/
+  position: absolute;
+  right: -12px;
+  text-align: center;
+  top: -10px;
+  width: 24px;
+  line-height: 25px;
+  font-weight: bold;
+  background: #c00;
+  color: #fff;
+  /*border: 3px solid #fff;*/
+  border-radius: 12px;
+  /*padding: 0.5em;*/
+  text-decoration: none;   /* get rid of the underline */
+  box-shadow: 1px 1px 3px #000;
+}
+
+/* make it clear to the user that the window will be closed */
+article [data-button="close"]:hover {
+  background: #fff;
+  color: #c00;
+  /*border: 3px solid #c00;*/
+}
+
+h1 {
+  color: firebrick;
+  font-weight: bold;
+  font-size: 3em;
+}
+
+.popup_img {
+  display: block;
+  max-width: 100%;
+  max-height: 80%;
+  float: left;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>CSS-Only Pop-up Modal Boxes</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+
+<!-- The container ID will be used to control flow of the page -->
+<div id="container">
+
+  <!-- A descriptive header for the page -->
+  <h1>The Solar System</h1>
+
+  <!-- Introductory information to inform the user what the links will be telling them -->
+  <p>There are several diverse planets in our solar system, each with neat characteristics.</p>
+
+  <!-- The nav tag is specific to blocks of navigation related links -->
+  <nav>
+
+    <!-- These links are linked to IDs within the page -->
+    <a href="#mars">Mars</a>
+    <a href="#uranus">Uranus</a>
+    <a href="#earth">Earth</a>
+    <a href="#venus">Venus</a>
+  </nav>
+
+  <!-- --------------------- -->
+  <!-- Here's the content for the pop-up boxes. It uses the article tag. The article tag is useful for self-contained content -->
+  <!-- Articles should not require the user to not have any other information for the content to be understandable. This is what is meant by self-contained. -->
+  <!-- The content makes sense in the absence of external information.
+  <!-- --------------------- -->
+
+  <!-- The data-transition attribute controls various ways for the pop-up to appear/disappear -->
+  <div id="mars" class="modal-container" data-transition="zoom">
+    <article>
+      <!-- Add a button that links to # to just close the pop-up.  Include data-button to enable ability to style -->
+      <a href="#" data-button="close">X</a>
+      <h2>Mars</h2>
+      <p>The red planet</p>
+      <img class="popup_img" src="http://i.telegraph.co.uk/multimedia/archive/03493/mars1_3493132b.jpg" alt="mars">
+    </article>
+  </div>
+
+  <div id="uranus" class="modal-container" data-transition="left">
+    <article>
+      <a href="#" data-button="close">X</a>
+      <h2>Uranus</h2>
+      <p>The blue planet</p>
+      <img class="popup_img" src="https://www.wwu.edu/depts/skywise/planets/neptune.jpg" alt="uranus">
+    </article>
+  </div>
+
+  <div id="earth" class="modal-container" data-transition="fade">
+    <article>
+      <a href="#" data-button="close">X</a>
+      <h2>Earth</h2>
+      <p>Our home</p>
+      <img class="popup_img" src="https://static.pexels.com/photos/2422/sky-earth-galaxy-universe.jpg" alt="earth">
+    </article>
+  </div>
+
+  <div id="venus" class="modal-container" data-transition="right">
+    <article>
+      <a href="#" data-button="close">X</a>
+      <h2>Venus</h2>
+      <p>The yellow-orange planet</p>
+      <img class="popup_img" src="http://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1440/AW_Venus_nli6oy.jpg" alt="venus">
+    </article>
+  </div>
+</div>
+
+</body>
+
+</html>
