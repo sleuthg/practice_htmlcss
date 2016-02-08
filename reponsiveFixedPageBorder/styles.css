@@ -1,0 +1,28 @@
+
+.html, body {
+  background-color: #f0f0f0;  /* soften the background a bit */
+  padding: 20px;              /* put some space in there */
+}
+
+.page-border {
+  position: fixed;
+  z-index: 999;    /* needs to be large to be on top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;   /* puts the box around content and padding, but NOT margin */
+  border: darkblue solid 10px;
+}
+
+h1 {
+  font-size: 3em;
+  font-weight: bold;
+  color: darkblue;
+}
+
+img {
+  display: block;
+  max-height: 500px;
+  padding: 30px;
+}
